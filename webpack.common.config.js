@@ -13,9 +13,18 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 8192
+                            name: 'img/[name].[ext]',
+                            limit: 8192,
                         }
-                    }
+                    },
+                    // {
+                    //     loader: 'file-loader',
+                    //     options: {
+                    //         name: '[name].[ext]',
+                    //         outputPath: '',
+                    //         publicPath: './img'
+                    //     }
+                    // }
                 ]
             },
             {
