@@ -1,0 +1,68 @@
+.unfinished-wrapper {
+    .online-musical-instruments {
+        background-color: #fafafa;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        .online-musical-instruments-title {
+            font-size: 60px;
+        }
+        .online-musical-instruments-introduc {
+            font-size: 40px;
+            margin-top: 20px;
+        }
+        .online-musical-instruments-img {
+            width: 800px;
+            margin-top: 30px;
+        }
+        .online-musical-instruments-link {
+            margin-top: 40px;
+        }
+        .online-musical-instruments-link-btn {
+            background-color: #31c27c;
+        }
+    }
+    .online-musical-instruments-link-btn,
+    .music-maker-link-btn {
+        height: 40px;
+        padding: 5px 20px;
+        border-radius: 40px;;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-size: 20px;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .music-maker {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        background: #31c27c;
+        color: #fff;
+        .music-maker-title {
+            font-size: 60px;
+        }
+        .music-maker-introduce {
+            font-size: 40px;
+            margin-top: 20px;
+        }
+        .music-maker-img {
+            width: 800px;
+            margin-top: 30px;
+        }
+        .music-maker-link-btn {
+            background-color: #fafafa;
+            color: #31c27c;
+        }
+        .music-maker-link {
+            margin-top: 40px;
+        }
+    }
+}

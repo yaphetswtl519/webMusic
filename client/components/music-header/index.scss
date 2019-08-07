@@ -1,0 +1,187 @@
+.music-header {
+    position: relative;
+    background-color: #fff;
+    z-index: 4;   
+}
+.section-inner {
+    position: relative;
+    padding-top: 90px;
+    margin: 0 50px;
+    max-width: 1200px;
+    a {
+        color: #000;
+    }
+    .music-title {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    .top-nav {
+        position: absolute;
+        left: 198px;
+        top: 0;
+        .top-nav-item {
+            position: relative;
+            float: left;
+            margin-right: -5px;
+            a {
+                display: block;
+                padding: 0 30px;
+                line-height: 90px;
+                height: 90px;
+                text-align: center;
+                font-size: 18px;
+            }
+            .top-nav-like {
+                padding-top: 35px;
+                box-sizing: border-box;
+                .top-nav-like-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 30px;
+                    i {
+                        display: inline-block;
+                    }
+                }
+                .top-nav-like-txt {
+                    height: 25px;
+                    line-height: 25px;
+                    margin-top: -5px;
+                    font-size: 16px;
+                }
+            }
+        }
+        .top-nav-item:hover {
+            a {
+                color: #31c27c;
+            }
+        }
+        .top-nav-library::before,
+        .top-nav-library::after {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 60px;
+            background: #d8d8d8;
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+        }
+        .top-nav-library::after {
+            right: 0;
+        }
+    }
+    .top-subnav {
+        height: 51px;
+        line-height: 51px;
+        border-top: 1px solid #f2f2f2;
+        padding-left: 230px;
+        margin-right: -50px;
+        .top-subnav-item {
+            float: left;
+            font-size: 15px;
+            color: #c1c1c1;
+            margin-right: 55px;
+            cursor: pointer;
+        }
+        .top-subnav-item:hover {
+            a {
+                color: #31c27c;
+            }
+        }
+    }
+    .music-search {
+        position: absolute;
+        top: 0;
+        right: 189px;
+        border: 1px solid #c9c9c9;
+        padding: 0 33px 0 3px;
+        line-height: 36px;
+        height: 36px;
+        margin-top: 26px;
+        border-radius: 3px;
+        background: #fff;
+        transition: width .6s ease-out;
+        .music-search-input {
+            border: 0;
+            width: 0;
+            visibility: hidden;
+            height: 36px;
+            font-size: 14px;
+            color: #000;
+            line-height: 1.5;
+        }
+        .music-search-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: 0 none;
+            width: 35px;
+            height: 35px;
+            overflow: visible;
+            cursor: pointer;
+            padding: 0;
+            i {
+                margin-top: 5px;
+            }
+            .music-search-icon-txt {
+
+            }
+        }
+    }
+    .music-search:hover {
+        padding-left: 11px;
+        .music-search-input {
+            width: 180px;
+            visibility: visible;
+            transition: width .6s ease-out,visibility .6s 1ms ease-out;
+        }
+        i {
+            color: #31c27c;
+            font-size: 16px;
+        }
+    }
+    .login-module {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        right: 50px;
+        top: 0;
+        height: 90px;
+        cursor: pointer;
+        .login {
+            position: relative;
+            padding-right: 15px;
+        }
+        .login::after {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -6px;
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 12px;
+            background-color: #d8d8d8;
+        }
+        .register {
+            padding-left: 15px;
+        }
+    }
+}
+@media (max-width: 1240px) {
+    .section-inner {
+        margin: 0 50px;
+        min-width: 900px;
+    }
+}

@@ -1,0 +1,47 @@
+.music-footer {
+    color: #999;
+    background-color: #333;
+    margin-top: 20px;
+}
+@media (max-width: 1200px) {
+    .music-section-inner {
+        min-width: 900px;
+        margin: 0 50px;
+    }
+}
+.music-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-info {
+    text-align: center;
+    position: relative;
+    padding-top: 30px;
+    border-bottom: 1px solid #353535;
+    .footer-about {
+        p {
+            font-size: 18px;
+            color: #fff;
+        }
+        .about-list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .about-item {
+                display: inline-flex;
+                color: #939393;
+                font-size: 14px;
+
+                padding: 10px 20px;
+                
+                cursor: pointer;
+            }
+        }
+    }
+}
+.footer-copyright {
+    text-align: center;
+    line-height: 28px;
+    padding: 24px 0;
+    font-size: 12px;
+}
