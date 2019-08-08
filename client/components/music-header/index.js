@@ -12,7 +12,7 @@ export default class MusicHeader extends Component {
             payload: {
                 isShowLoginModule: true
             }
-        });
+        })
     }
     render() {
         return (

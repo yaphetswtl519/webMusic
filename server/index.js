@@ -6,6 +6,16 @@ const logger = require('koa-logger');
 const boot = require('./boot');
 const config = require('../webpack.dev.conf');
 const koaRouter = require('./router');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://127.0.0.1:27017/db');
+const db = mongoose.connection;
+db.on('error', (e) => {
+    console.log(e);
+});
+db.once('open', () => {
+    console.log('connect success');
+});
 
 const app = new koa();
 boot.init(app);
