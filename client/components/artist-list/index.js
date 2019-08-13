@@ -2,10 +2,15 @@ import './index.scss';
 import React from 'react';
 import { Menu, Dropdown, Icon } from 'antd';
 import { Link } from 'rabjs/router';
+import { connect } from 'rabjs';
 import ArtistItem from '../artist-item';
 
+@connect((state) => ({
+    musicians: state.index.musicians
+}))
 export default class ArtistList extends React.Component {
     render() {
+        console.log(this.props.musicians)
         const menu = (
             <Menu>
                 <Menu.Item>
@@ -56,8 +61,8 @@ export default class ArtistList extends React.Component {
                     <div className="list-container">
                         <div className="adaptive-list">
                             {
-                                new Array(10).fill('').map((_, i) => {
-                                    return <ArtistItem key={i}></ArtistItem>
+                                this.props.musicians.map((_, i) => {
+                                    return <ArtistItem key={i} musician={_}></ArtistItem>
                                 })
                             }
                         </div>

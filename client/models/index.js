@@ -6,7 +6,8 @@ export default {
         isShowLoginModule: false,
         isLogin: false,
         isVip: false,
-        musicianLoading: false
+        musicianLoading: false,
+        musicians: []
     },
     reducers: {
         setState (state, action) {
@@ -14,10 +15,10 @@ export default {
         },
         getAllMusician: {
             success (state, action) {
-                console.log(action)
                 return {
                     ...state,
-                    ...action.payload
+                    ...action.payload,
+                    musicianLoading: false
                 }
             },
             throw () {
