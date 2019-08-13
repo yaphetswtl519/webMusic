@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const UserSchema = require('../db/mongoose/index');
+const { UserSchema } = require('../db/mongoose/index');
 
 const login = async function(ctx) {
     try {
@@ -8,11 +8,12 @@ const login = async function(ctx) {
         const res = await User.find({
             user_name: username
         });
-        console.log(res[0], password)
+        console.log(res, password)
         if (res[0].password === password) {
             ctx.response.body = {
                 code: 200,
-                msg: '登陆成功'
+                msg: '登陆成功',
+                isVip: res[0].isVip
             }
         } else {
             ctx.response.body = {

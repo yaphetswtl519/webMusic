@@ -7,4 +7,15 @@ const UserSchema = new Schema({
     isVip: Boolean,
 });
 
-module.exports = UserSchema
+const MusicSchema = new Schema({
+    name: String,
+    sex: String,
+    biography: String,
+    img: String,
+    songs: [Schema.Types.Mixed]
+});
+
+module.exports = {
+    UserSchema,
+    MusicSchema
+}

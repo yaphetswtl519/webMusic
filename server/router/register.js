@@ -1,7 +1,7 @@
 const path = require('path');
 const webpackConfig = require('../../webpack.dev.conf.js');
 const mongoose = require('mongoose');
-const UserSchema = require('../db/mongoose/index');
+const { UserSchema } = require('../db/mongoose/index');
 
 const register = async function(ctx) {
     try {

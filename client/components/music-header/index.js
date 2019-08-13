@@ -5,6 +5,10 @@ import { Link } from 'rabjs/router';
 import { connect, dispatch } from 'rabjs';
 import { Icon } from 'antd';
 
+@connect((state) => ({
+    isLogin: state.index.isLogin,
+    isVip: state.index.isVip
+}))
 export default class MusicHeader extends Component {
     toggleLogin() {
         dispatch({
@@ -14,7 +18,19 @@ export default class MusicHeader extends Component {
             }
         })
     }
+    toggleLogout() {
+        dispatch({
+            type: 'index.setState',
+            payload: {
+                isLogin: false,
+                isVip: false,
+                isShowLoginModule: false
+            }
+        });
+        alert('登出成功')
+    }
     render() {
+        const { isVip } = this.props;
         return (
             <div className="music-header">
                 <div className="section-inner">
@@ -33,7 +49,7 @@ export default class MusicHeader extends Component {
                                 <div className="top-nav-like-txt">(Likes)</div>
                             </Link>
                         </li>
-                        <li className="top-nav-item">
+                        <li className={`top-nav-item ${isVip ? 'is-vip' : ''}`}>
                             <Link to="/">VIP</Link>
                         </li>
                     </ul>
@@ -49,10 +65,17 @@ export default class MusicHeader extends Component {
                             {/* <span className="music-search-icon-txt">搜索</span> */}
                         </button>
                     </div>
-                    <div className="login-module" onClick={this.toggleLogin}>
-                        <span className="login">登陆</span>
-                        <span className="register">注册</span>
-                    </div>
+                    {
+                        this.props.isLogin ?
+                            <div className="login-module" onClick={this.toggleLogout}>
+                                <span className="logout">登出</span>
+                            </div>
+                            :
+                            <div className="login-module" onClick={this.toggleLogin}>
+                                <span className="login">登陆</span>
+                                <span className="register">注册</span>
+                            </div>
+                    }
                 </div>
             </div>
         )

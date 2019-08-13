@@ -1,7 +1,7 @@
 'use strict';
 import './index.scss';
 import React, { Component } from 'react';
-import { connect } from 'rabjs';
+import { connect, call } from 'rabjs';
 import MusicHeader from '../../components/music-header';
 import MusicCarousel from '../../components/music-carousel';
 import ArtistList from '../../components/artist-list';
@@ -15,10 +15,9 @@ import LoginModule from '../../components/login-module';
 }))
 export default class Index extends Component {
     componentDidMount() {
-        console.log(this.props);
+        call('index.getAllMusician');
     }
     componentWillReceiveProps(props) {
-        console.log(props)
     }
     render() {
         return (
