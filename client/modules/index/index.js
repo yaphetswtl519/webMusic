@@ -15,7 +15,7 @@ import LoginModule from '../../components/login-module';
 }))
 export default class Index extends Component {
     componentDidMount() {
-        call('index.getAllMusician');
+        call('index.getAllMusician', 'all');
     }
     componentWillReceiveProps(props) {
     }

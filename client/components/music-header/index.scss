@@ -94,6 +94,11 @@
             margin-right: 55px;
             cursor: pointer;
         }
+        .top-subnav-item.active {
+            a {
+                color: #31c27c;
+            }
+        }
         .top-subnav-item:hover {
             a {
                 color: #31c27c;

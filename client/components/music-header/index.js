@@ -10,6 +10,12 @@ import { Icon } from 'antd';
     isVip: state.index.isVip
 }))
 export default class MusicHeader extends Component {
+    constructor() {
+        super();
+        this.state = {
+            nav: 'home'            
+        }
+    }
     toggleLogin() {
         dispatch({
             type: 'index.setState',
@@ -29,13 +35,20 @@ export default class MusicHeader extends Component {
         });
         alert('登出成功')
     }
+    clickNav(e) {
+        if (e.target.dataset) {
+            this.setState({
+                nav: e.target.dataset.type
+            });
+        }
+    }
     render() {
         const { isVip } = this.props;
         return (
             <div className="music-header">
                 <div className="section-inner">
                     <div className="music-title">
-                        <Link to="/">MyPlayer</Link>
+                        <Link to="/musician">MyPlayer</Link>
                     </div>
                     <ul className="top-nav">
                         <li className="top-nav-item top-nav-library">
@@ -53,10 +66,10 @@ export default class MusicHeader extends Component {
                             <Link to="/">VIP</Link>
                         </li>
                     </ul>
-                    <ul className="top-subnav">
-                        <li className="top-subnav-item"><Link to="/">Home</Link></li>
-                        <li className="top-subnav-item"><Link to="/">Artists</Link></li>
-                        <li className="top-subnav-item"><Link to="/">List</Link></li>
+                    <ul className="top-subnav" onClick={this.clickNav.bind(this)}>
+                        <li className={`top-subnav-item ${this.state.nav === 'home' ? 'active' : ''}`}><Link to="/" data-type="home">Home</Link></li>
+                        <li className={`top-subnav-item ${this.state.nav === 'artists' ? 'active' : ''}`}><Link to="/" data-type="artists">Artists</Link></li>
+                        <li className={`top-subnav-item ${this.state.nav === 'list' ? 'active' : ''}`}><Link to="/" data-type="list">List</Link></li>
                     </ul>
                     <div className="music-search">
                         <input type="text" className="music-search-input" placeholder="搜索音乐、MV、歌单、用户"/>

@@ -24,6 +24,9 @@
                 cursor: pointer;
                 margin-left: 40px;
             }
+            .delay-tab {
+                cursor: help;
+            }
             .tab.active {
                 color: #31c27c;
                 font-weight: 500;
@@ -95,6 +98,9 @@
     position: absolute;
     z-index: 10;
     background: #fff;
+}
+.ant-dropdown-hidden {
+    display: none;
 }
 .ant-dropdown-menu {
     position: relative;

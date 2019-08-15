@@ -5,8 +5,9 @@ import rab, { call } from 'rabjs';
 import { Route, Switch, routerRedux } from 'rabjs/router';
 const { ConnectedRouter: Router } = routerRedux;
 import Index from '../modules/index';
+import Musician from '../modules/musician';
 import index from '../models/index';
-
+console.log(Musician)
 export default class Bootstrap {
     static getSigngleton() {
         return globalSingleton;
@@ -24,7 +25,8 @@ export default class Bootstrap {
             return (
                 <Router history={history}>
                     <Switch>
-                        <Route path="/" component={Index}></Route>
+                        <Route path="/" exact component={Index}></Route>
+                        <Route path="/musician/:name" component={Musician}></Route>
                     </Switch>
                 </Router>
             );

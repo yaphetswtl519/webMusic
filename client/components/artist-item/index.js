@@ -7,7 +7,7 @@ export default class ArtistItem extends React.Component {
         musician.img = musician.img.includes('http:') ? musician.img : `http://${musician.img}`;
         return (
             <div className="artist-item">
-                <Link to="/">
+                <Link to={`/musician/${musician.name}`}>
                     <div className="artist-img" style={{backgroundImage: `url(${musician.img})`}}></div>
                 </Link>
                 <div className="artist-info">
