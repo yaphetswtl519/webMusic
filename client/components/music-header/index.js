@@ -48,7 +48,7 @@ export default class MusicHeader extends Component {
             <div className="music-header">
                 <div className="section-inner">
                     <div className="music-title">
-                        <Link to="/musician">MyPlayer</Link>
+                        <Link to="/">MyPlayer</Link>
                     </div>
                     <ul className="top-nav">
                         <li className="top-nav-item top-nav-library">

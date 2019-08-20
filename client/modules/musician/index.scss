@@ -51,6 +51,7 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
+            cursor: pointer;
             .musician-desc-popup {
                 z-index: 2;
                 position: absolute;

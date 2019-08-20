@@ -152,6 +152,25 @@
                         height: 2px;
                         background: #ccc;
                     }
+                    .ant-slider-handle {
+                        position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        margin-top: -5px;
+                        margin-left: -1px;
+                        border-radius: 50%;
+                        border: 1px solid #31c27c;
+                        background-color: #fff;
+                        cursor: pointer;
+                        outline: none;
+                    }
+                    .ant-slider-track {
+                        position: absolute;
+                        height: 4px;
+                        background-color: #31c27c;
+                        margin-top: -1px;
+                        z-index: 2;
+                    }
                 }
             }
             .menu-unfold {

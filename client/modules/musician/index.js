@@ -1,5 +1,5 @@
 import React from 'react';
-import { call, connect } from 'rabjs' ;
+import { call, connect, dispatch } from 'rabjs' ;
 import MusicHeader from '../../components/music-header';
 import MusicFooter from '../../components/music-footer';
 import MusicBar from '../../components/music-bar';
@@ -21,6 +21,21 @@ export default class Musician extends React.Component {
     showDetail() {
         this.setState({
             showDetail: !this.state.showDetail
+        });
+    }
+    playHotMusic() {
+        console.log(this.props.musician)
+        const musician = this.props.musician;
+        dispatch({
+            type: 'index.setState',
+            payload: {
+                song: {
+                    src: 'http://pv1ykrmt7.bkt.clouddn.com/' + encodeURIComponent(musician.songs[0].name) + '.mp3',
+                    songName: musician.songs[0].name,
+                    name: musician.name,
+                    img: musician.img.includes('http') ? musician.img : `http://${musician.img}`
+                } 
+            }  
         });
     }
     render() {
@@ -66,7 +81,7 @@ export default class Musician extends React.Component {
                                         </li>
                                     </ul>
                                     <div className="musician-action">
-                                        <div className="musician-play">播放歌手热门歌曲</div>
+                                        <div className="musician-play" onClick={this.playHotMusic.bind(this)}>播放歌手热门歌曲</div>
                                         <div className="musician-follow">关注 1478.3万</div>
                                     </div>
                                 </div>

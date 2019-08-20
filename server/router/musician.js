@@ -1,14 +1,15 @@
 const path = require('path');
 const url = require('url');
+const fs = require('fs');
 const webpackConfig = require('../../webpack.dev.conf.js');
 const mongoose = require('mongoose');
 const { MusicSchema } = require('../db/mongoose/index');
-// const { musicians } = require('../mock/mock');
+// const { musicians: mock } = require('../mock/mock');
 
 const register = async function(ctx) {
     try {
         const musicSchema = mongoose.model('MusicSchema', MusicSchema);
-        // musicians.forEach((item) => {
+        // mock.forEach((item) => {
         //     new musicSchema(item).save();
         // });
         const query = url.parse(ctx.request.url).query;
@@ -29,6 +30,8 @@ const register = async function(ctx) {
             default:
                 break;
         }
+        // const songPath = path.join(__dirname, '../../../', 'songs/Beyond24/光辉岁月.mp3');
+        // const song = fs.readFileSync(songPath);
         ctx.body = {
             code: 200,
             musicians

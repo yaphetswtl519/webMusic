@@ -1,24 +1,61 @@
 import './index.scss';
 import React from 'react'
+import { connect } from 'rabjs';
 import { Link } from 'rabjs/router';
 import { Icon, Slider } from 'antd';
+@connect((state) => ({
+    song: state.index.song
+}))
 export default class MusicBar extends React.Component {
-    state = {
-        value: 0
-    };
+    constructor() {
+        super();
+        this.state = {
+            isPlay: false,
+            volume: 0
+        };
+    }
+    componentDidMount() {
+        this.refs.audio.addEventListener('canplaythrough', (e) => {
+            this.refs.audio.play();
+            this.setState({
+                isPlay: true
+            });
+            console.log(this.refs.audio.duration);
+        })
+    }
+    toggleSong() {
+        const audio = this.refs.audio;
+        if (this.state.isPlay) {
+            audio.pause();
+            this.setState({
+                isPlay: false
+            });
+        } else {
+            audio.play();
+            this.setState({
+                isPlay: true
+            });
+        }
+    }
+    onChange = (e) => {
+        this.setState({
+            volume: e
+        });
+        this.refs.audio.volume = e / 10;
+    }
     render() {
-        const { value } = this.state;
+        const {song} = this.props;
         return (
             <div className="music-bar">
                 <div className="audio-progress"></div>
                 <div className="play-bar">
                     <div className="music">
                         <Link to="/">
-                            <img src="http://pic.xiami.net/images/album/img64/638864/59996761562638864.jpg?x-oss-process=image/resize,limit_0,s_144,m_fill"/>
+                            <img src={song.img}/>
                         </Link>
                         <div className="info">
-                            <div className="title">缘分一道桥</div>
-                            <div className="singer">王力宏</div>
+                            <div className="title">{song.songName}</div>
+                            <div className="singer">{song.name}</div>
                         </div>
                         <div className="select">
                             <div className="quality-selector">HQ</div>
@@ -31,8 +68,10 @@ export default class MusicBar extends React.Component {
                         <div className="prev">
                             <Icon type="step-backward"></Icon>
                         </div>
-                        <div className="play-btn">
-                            <Icon type="play-circle"></Icon>
+                        <div className="play-btn" onClick={this.toggleSong.bind(this)}>
+                            {
+                                this.state.isPlay ? <Icon type="pause-circle"/> : <Icon type="play-circle"/>
+                            }
                         </div>
                         <div className="next">
                             <Icon type="step-forward"></Icon>
@@ -43,15 +82,14 @@ export default class MusicBar extends React.Component {
                             <div className="sound">
                                 <Icon type="sound"/>
                             </div>
-                            {/* <div className="bar"> */}
-                                <Slider value={value}/>
-                            {/* </div> */}
+                            <Slider min={0} max={10} onChange={this.onChange} value={this.state.volume}/>
                         </div>
                         <div className="play-mode-control"></div>
                         <Icon type="menu-unfold" className="menu-unfold"/>
                         <Icon type="arrows-alt"/>
                     </div>
                 </div>
+                <audio ref="audio" src={song.src} volume={this.state.volume / 10}/>
             </div>
         )
     }

@@ -186,7 +186,9 @@ const musicians = [
         x the second studio album by Sheeran was released in 2015. The album went straight to number one in both the UK and the US. x has had five singles thus far Sing, Don't, Thinking Out Loud, Bloodstream and Photograph.
         Sheeran recently was awarded with an Honorary Doctorate by the University Campus Suffolk (UCS). The ceremony is later this year.`,
         songs: [{
-            name: 'Thinking out loud, photograph'
+            name: 'Thinking out loud'
+        }, {
+            name: 'photograph'
         }]
     },
     {

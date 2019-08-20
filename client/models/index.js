@@ -8,7 +8,8 @@ export default {
         isVip: false,
         musicianLoading: false,
         musicians: [],
-        musician: {}
+        musician: {},
+        song: {}
     },
     reducers: {
         setState (state, action) {
@@ -16,10 +17,11 @@ export default {
         },
         getAllMusician: {
             success (state, action) {
+                console.log(action.payload)
                 return {
                     ...state,
                     ...action.payload,
-                    musicianLoading: false
+                    musicianLoading: false,
                 }
             },
             throw () {
@@ -37,7 +39,7 @@ export default {
                 }
             },
             throw() {
-                
+
             }
         }
     },

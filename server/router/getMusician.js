@@ -12,7 +12,6 @@ const register = async function(ctx) {
         // });
         const query = url.parse(ctx.request.url).query.split('=')[1];
         const res = await musicSchema.find({ name: decodeURIComponent(query) })
-        console.log(res);
         ctx.body = {
             code: 200,
             res: res[0]

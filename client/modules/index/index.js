@@ -11,7 +11,8 @@ import MusicBar from '../../components/music-bar';
 import LoginModule from '../../components/login-module';
 
 @connect((state) => ({
-    isShowLoginModule: state.index.isShowLoginModule
+    isShowLoginModule: state.index.isShowLoginModule,
+    song: state.index.song
 }))
 export default class Index extends Component {
     componentDidMount() {
@@ -20,16 +21,19 @@ export default class Index extends Component {
     componentWillReceiveProps(props) {
     }
     render() {
+        const { isShowLoginModule, song } = this.props;
         return (
-            <div className="index-music-container">
+            <div className={`index-music-container ${song.name ? 'index-music-padding' : ''}`}>
                 <MusicHeader></MusicHeader>
                 <MusicCarousel></MusicCarousel>
                 <ArtistList></ArtistList>
                 <Unfinished></Unfinished>
                 <MusicFooter></MusicFooter>
-                <MusicBar></MusicBar>
                 {
-                    this.props.isShowLoginModule ? <LoginModule></LoginModule> : ''
+                    song.name ? <MusicBar></MusicBar> : ''
+                }
+                {
+                    isShowLoginModule ? <LoginModule></LoginModule> : ''
                 }
                 
             </div>
