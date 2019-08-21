@@ -24,7 +24,7 @@ export default class Index extends Component {
         const { isShowLoginModule, song } = this.props;
         return (
             <div className={`index-music-container ${song.name ? 'index-music-padding' : ''}`}>
-                <MusicHeader></MusicHeader>
+                <MusicHeader history={this.props.history}></MusicHeader>
                 <MusicCarousel></MusicCarousel>
                 <ArtistList></ArtistList>
                 <Unfinished></Unfinished>

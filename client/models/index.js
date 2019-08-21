@@ -1,5 +1,6 @@
 'use strict';
 import { call, dispatch } from 'rabjs';
+import { stat } from 'fs';
 export default {
     namespace: 'index',
     state: {
@@ -9,7 +10,10 @@ export default {
         musicianLoading: false,
         musicians: [],
         musician: {},
-        song: {}
+        song: {},
+        collect: [],
+        username: '',
+        songList: []
     },
     reducers: {
         setState (state, action) {
@@ -41,6 +45,14 @@ export default {
             throw() {
 
             }
+        },
+        collectMusic: {
+            success(state, action) {
+                return {
+                    ...state,
+                    songList: [...new Set([...action.payload.songList])]
+                }
+            }
         }
     },
     actions: {
@@ -66,6 +78,17 @@ export default {
                     'Content-Type': 'application/json;charset=utf-8'
                 }
             });
+            return res.json();
+        },
+        collectMusic: (music) => async ({getState}) => {
+            console.log(getState().index, music);
+            const res = await fetch(`/collectMusic?key=${music}&username=${getState().index.username}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                }
+            });
+            console.log(res)
             return res.json();
         }
     } 

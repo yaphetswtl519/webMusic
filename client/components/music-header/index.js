@@ -30,9 +30,11 @@ export default class MusicHeader extends Component {
             payload: {
                 isLogin: false,
                 isVip: false,
-                isShowLoginModule: false
+                isShowLoginModule: false,
+                songList: []
             }
         });
+        this.props.history.go(-1);
         alert('登出成功')
     }
     clickNav(e) {
@@ -40,6 +42,18 @@ export default class MusicHeader extends Component {
             this.setState({
                 nav: e.target.dataset.type
             });
+        }
+    }
+    gotoCollect() {
+        if (this.props.isLogin) {
+            this.props.history.push('/collect')
+        } else {
+            dispatch({
+                type: 'index.setState',
+                payload: {
+                    isShowLoginModule: true
+                }
+            })
         }
     }
     render() {
@@ -55,12 +69,12 @@ export default class MusicHeader extends Component {
                             <Link to="/">Library</Link>
                         </li>
                         <li className="top-nav-item">
-                            <Link to="/" className="top-nav-like">
+                            <a className="top-nav-like" onClick={this.gotoCollect.bind(this)}>
                                 <div className="top-nav-like-icon">
                                     <Icon type="heart" style={{color: '#ff410f', 'fontSize': '30px'}} theme="filled"></Icon>
                                 </div>
                                 <div className="top-nav-like-txt">(Likes)</div>
-                            </Link>
+                            </a>
                         </li>
                         <li className={`top-nav-item ${isVip ? 'is-vip' : ''}`}>
                             <Link to="/">VIP</Link>
@@ -80,7 +94,7 @@ export default class MusicHeader extends Component {
                     </div>
                     {
                         this.props.isLogin ?
-                            <div className="login-module" onClick={this.toggleLogout}>
+                            <div className="login-module" onClick={this.toggleLogout.bind(this)}>
                                 <span className="logout">登出</span>
                             </div>
                             :

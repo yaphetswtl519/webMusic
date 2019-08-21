@@ -3,9 +3,13 @@ import { call, connect, dispatch } from 'rabjs' ;
 import MusicHeader from '../../components/music-header';
 import MusicFooter from '../../components/music-footer';
 import MusicBar from '../../components/music-bar';
+import LoginModule from '../../components/login-module';
 import './index.scss';
 @connect((state) => ({
-    musician: state.index.musician
+    musician: state.index.musician,
+    song: state.index.song,
+    isLogin: state.index.isLogin,
+    isShowLoginModule: state.index.isShowLoginModule
 }))
 export default class Musician extends React.Component {
     constructor() {
@@ -17,6 +21,7 @@ export default class Musician extends React.Component {
     componentDidMount() {
         const name = this.props.match.params.name;
         call('index.getMusicianByName', name);
+        console.log(this.props.isShowLoginModule)
     }
     showDetail() {
         this.setState({
@@ -24,7 +29,6 @@ export default class Musician extends React.Component {
         });
     }
     playHotMusic() {
-        console.log(this.props.musician)
         const musician = this.props.musician;
         dispatch({
             type: 'index.setState',
@@ -38,11 +42,26 @@ export default class Musician extends React.Component {
             }  
         });
     }
+    playSelectedSong(e) {
+        const data = e.target.dataset;
+        dispatch({
+            type: 'index.setState',
+            payload: {
+                song: {
+                    src: 'http://pv1ykrmt7.bkt.clouddn.com/' + encodeURIComponent(data.songname) + '.mp3',
+                    songName: data.songname,
+                    name: data.name,
+                    img: data.img.includes('http') ? data.img : `http://${data.img}`
+                } 
+            }  
+        });
+    }
     render() {
-        const { musician } = this.props;
+        const { musician, isShowLoginModule } = this.props;
+        console.log(this.props.isShowLoginModule)
         return (
             <div className="musician-container">
-                <MusicHeader></MusicHeader>
+                <MusicHeader history={this.props.history}></MusicHeader>
                 {
                     musician.name ? 
                     <div>
@@ -104,7 +123,7 @@ export default class Musician extends React.Component {
                                                 <li key={index}>
                                                     <div className="item">
                                                         <div className="item-number">{index+1}</div>
-                                                        <div className="item-name">{item.name}</div>
+                                                        <div className="item-name" data-songname={item.name} data-img={musician.img} data-name={musician.name} onClick={this.playSelectedSong.bind(this)}>{item.name}</div>
                                                         <div className="item-album">暂无</div>
                                                         <div className="item-time">04:50</div>
                                                     </div>
@@ -161,8 +180,13 @@ export default class Musician extends React.Component {
                         </div>
                     </div> : ''
                 }
+                {
+                    isShowLoginModule ? <LoginModule></LoginModule> : ''
+                }
                 <MusicFooter></MusicFooter>
-                <MusicBar></MusicBar>
+                {
+                    this.props.song && this.props.song.name ? <MusicBar></MusicBar> : ''
+                }
             </div>
         )
     }

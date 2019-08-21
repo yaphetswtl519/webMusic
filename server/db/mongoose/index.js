@@ -5,6 +5,7 @@ const UserSchema = new Schema({
     user_name: String,
     password: String,
     isVip: Boolean,
+    songList: Array
 });
 
 const MusicSchema = new Schema({

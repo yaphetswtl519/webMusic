@@ -7,7 +7,7 @@ const { ConnectedRouter: Router } = routerRedux;
 import Index from '../modules/index';
 import Musician from '../modules/musician';
 import index from '../models/index';
-console.log(Musician)
+import Collect from '../modules/collect';
 export default class Bootstrap {
     static getSigngleton() {
         return globalSingleton;
@@ -27,6 +27,7 @@ export default class Bootstrap {
                     <Switch>
                         <Route path="/" exact component={Index}></Route>
                         <Route path="/musician/:name" component={Musician}></Route>
+                        <Route path="/collect" exact component={Collect}></Route>
                     </Switch>
                 </Router>
             );

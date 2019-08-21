@@ -11,7 +11,8 @@ const register = async function(ctx) {
         const res = await new User({
             user_name: username,
             password,
-            isVip: false
+            isVip: false,
+            songList: []
         }).save();
         ctx.body = {
             code: 200,

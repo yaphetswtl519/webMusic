@@ -1,17 +1,20 @@
 import './index.scss';
 import React from 'react'
-import { connect } from 'rabjs';
+import { connect, dispatch, call } from 'rabjs';
 import { Link } from 'rabjs/router';
 import { Icon, Slider } from 'antd';
 @connect((state) => ({
-    song: state.index.song
+    song: state.index.song,
+    isLogin: state.index.isLogin,
+    songList: state.index.songList
 }))
 export default class MusicBar extends React.Component {
     constructor() {
         super();
         this.state = {
             isPlay: false,
-            volume: 0
+            volume: 0,
+            isSilence: false
         };
     }
     componentDidMount() {
@@ -43,8 +46,30 @@ export default class MusicBar extends React.Component {
         });
         this.refs.audio.volume = e / 10;
     }
+    tapSilence() {
+        this.setState({
+            isSilence: !this.state.isSilence
+        });
+    }
+    collect() {
+        if (this.props.isLogin) {
+            call('index.collectMusic', this.props.song.songName)
+        } else {
+            this.refs.audio.pause();
+            this.setState({
+                isPlay: false
+            });
+            dispatch({
+                type: 'index.setState',
+                payload: {
+                    isShowLoginModule: true
+                }
+            })
+        }
+    }
     render() {
         const {song} = this.props;
+        console.log(this.props.songList)
         return (
             <div className="music-bar">
                 <div className="audio-progress"></div>
@@ -60,7 +85,7 @@ export default class MusicBar extends React.Component {
                         <div className="select">
                             <div className="quality-selector">HQ</div>
                         </div>
-                        <div className="favorite">
+                        <div className="favorite" onClick={this.collect.bind(this)}>
                             <Icon type="heart"></Icon>
                         </div>
                     </div>
@@ -79,8 +104,10 @@ export default class MusicBar extends React.Component {
                     </div>
                     <div className="tunings">
                         <div className="volume-control">
-                            <div className="sound">
-                                <Icon type="sound"/>
+                            <div className="sound" onClick={this.tapSilence.bind(this)}>
+                                {
+                                    this.state.isSilence ? <Icon type="customer-service"/> : <Icon type="sound"/>
+                                }
                             </div>
                             <Slider min={0} max={10} onChange={this.onChange} value={this.state.volume}/>
                         </div>
@@ -89,7 +116,7 @@ export default class MusicBar extends React.Component {
                         <Icon type="arrows-alt"/>
                     </div>
                 </div>
-                <audio ref="audio" src={song.src} volume={this.state.volume / 10}/>
+                <audio ref="audio" src={song.src} volume={this.state.volume / 10} muted={this.state.isSilence}/>
             </div>
         )
     }

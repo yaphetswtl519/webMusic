@@ -50,16 +50,15 @@ export default class LoginModule extends React.Component {
                 }
             });
             data = await data.json();
-            console.log(data);
             // alert(data.msg);
-            console.log(data.msg);
             if (data.code === 200) {
                 dispatch({
                     type: 'index.setState',
                     payload: {
                         isShowLoginModule: false,
                         isLogin: true,
-                        isVip: data.isVip
+                        isVip: data.isVip,
+                        username: loginAccount
                     }
                 });
             }
