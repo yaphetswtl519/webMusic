@@ -30,6 +30,8 @@ export default class Collect extends React.Component {
     componentDidMount() {
         if (!this.props.isLogin) {
             this.props.history.push('/');
+        } else {
+            call('index.getCollectMusic', 2);
         }
     }
     tapSong(e) {

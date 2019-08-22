@@ -27,7 +27,7 @@ export default class Index extends Component {
                 <MusicHeader history={this.props.history}></MusicHeader>
                 <MusicCarousel></MusicCarousel>
                 <ArtistList></ArtistList>
-                <Unfinished></Unfinished>
+                <Unfinished history={this.props.history}></Unfinished>
                 <MusicFooter></MusicFooter>
                 {
                     song.name ? <MusicBar></MusicBar> : ''

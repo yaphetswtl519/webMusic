@@ -1,10 +1,29 @@
 import './index.scss';
 import React from 'react';
+import { connect } from 'rabjs';
+@connect(state => ({
+    isVip: state.index.isVip,
+    isLogin: state.index.isLogin
+}))
 export default class Unfinished extends React.Component {
+    clickLearn() {
+        if (!this.props.isVip || !this.props.isLogin) {
+            alert('not vip');
+        } else {
+            location.href = 'https://www.sessiontown.com/en/blog/free-virtual-musical-instruments-online';
+        }
+    }
+    clickMake() {
+        if (!this.props.isVip || !this.props.isLogin) {
+            alert('not vip');
+        } else {
+            location.href = 'https://musiclab.chromeexperiments.com/Song-Maker';
+        }
+    }
     render() {
         return (
             <div className="unfinished-wrapper">
-                <a href="https://www.sessiontown.com/en/blog/free-virtual-musical-instruments-online">
+                <div onClick={this.clickLearn.bind(this)} href="https://www.sessiontown.com/en/blog/free-virtual-musical-instruments-online">
                     <div className="online-musical-instruments">
                         <div className="online-musical-instruments-title">Online Musical Instruments</div>
                         <p className="online-musical-instruments-introduce">
@@ -17,8 +36,8 @@ export default class Unfinished extends React.Component {
                         </div>
                         <img src={require(`../../../../images/index/instruments.svg`)} className="online-musical-instruments-img"/>
                     </div>
-                </a>
-                <a href="https://musiclab.chromeexperiments.com/Song-Maker/">
+                </div>
+                <div onClick={this.clickMake.bind(this)} href="https://musiclab.chromeexperiments.com/Song-Maker/">
                     <div className="music-maker">
                         <div className="music-maker-title">Music-Maker</div>
                         <p className="music-maker-introduce">
@@ -31,7 +50,7 @@ export default class Unfinished extends React.Component {
                         </div>
                         <img src={require(`../../../../images/index/music-maker.svg`)} className="music-maker-img"/>
                     </div>
-                </a>
+                </div>
             </div>
         )
     }
