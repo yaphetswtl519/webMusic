@@ -13,7 +13,7 @@ export default class MusicBar extends React.Component {
         super();
         this.state = {
             isPlay: false,
-            volume: 0,
+            volume: 10,
             isSilence: false
         };
     }
@@ -23,7 +23,6 @@ export default class MusicBar extends React.Component {
             this.setState({
                 isPlay: true
             });
-            console.log(this.refs.audio.duration);
         })
     }
     toggleSong() {
@@ -68,8 +67,7 @@ export default class MusicBar extends React.Component {
         }
     }
     render() {
-        const {song} = this.props;
-        console.log(this.props.songList)
+        const {song, songList, isLogin} = this.props;
         return (
             <div className="music-bar">
                 <div className="audio-progress"></div>
@@ -86,7 +84,7 @@ export default class MusicBar extends React.Component {
                             <div className="quality-selector">HQ</div>
                         </div>
                         <div className="favorite" onClick={this.collect.bind(this)}>
-                            <Icon type="heart"></Icon>
+                            <Icon type="heart" theme="filled" style={{color: `${songList.indexOf(song.songName) !== -1 && isLogin ? 'red' : ''}`}}></Icon>
                         </div>
                     </div>
                     <div className="main-control">

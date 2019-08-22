@@ -1,6 +1,6 @@
 const url = require('url');
 const mongoose = require('mongoose');
-const { MusicSchema, UserSchema } = require('../db/mongoose/index');
+const { UserSchema } = require('../db/mongoose/index');
 
 const register = async function(ctx) {
     try {
@@ -10,11 +10,19 @@ const register = async function(ctx) {
         const music = decodeURIComponent(query[0].split('=')[1]);
         const username = query[1].split('=')[1];
         let user = await User.findOne({user_name: username});
-        await user.update({
-            '$push': {
-                songList: music
-            }
-        });
+        if (!user.songList.includes(music)) {
+            await user.update({
+                '$push': {
+                    songList: music
+                }
+            });
+        } else {
+            await user.update({
+                '$pull': {
+                    songList: music
+                }
+            })
+        }
         user = await User.findOne({user_name: username});
         ctx.body = {
             code: 200,

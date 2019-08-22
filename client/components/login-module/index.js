@@ -1,7 +1,6 @@
 import React from 'react';
-import { dispatch } from 'rabjs';
+import { dispatch, call } from 'rabjs';
 import './index.scss';
-import $ from 'jquery';
 export default class LoginModule extends React.Component {
     constructor() {
         super();
@@ -61,6 +60,7 @@ export default class LoginModule extends React.Component {
                         username: loginAccount
                     }
                 });
+                call('index.getCollectMusic', 2);
             }
         }
     }

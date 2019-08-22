@@ -82,16 +82,16 @@ export default class MusicHeader extends Component {
                     </ul>
                     <ul className="top-subnav" onClick={this.clickNav.bind(this)}>
                         <li className={`top-subnav-item ${this.state.nav === 'home' ? 'active' : ''}`}><Link to="/" data-type="home">Home</Link></li>
-                        <li className={`top-subnav-item ${this.state.nav === 'artists' ? 'active' : ''}`}><Link to="/" data-type="artists">Artists</Link></li>
-                        <li className={`top-subnav-item ${this.state.nav === 'list' ? 'active' : ''}`}><Link to="/" data-type="list">List</Link></li>
+                        {/* <li className={`top-subnav-item ${this.state.nav === 'artists' ? 'active' : ''}`}><Link to="/" data-type="artists">Artists</Link></li> */}
+                        {/* <li className={`top-subnav-item ${this.state.nav === 'list' ? 'active' : ''}`}><Link to="/" data-type="list">List</Link></li> */}
                     </ul>
-                    <div className="music-search">
-                        <input type="text" className="music-search-input" placeholder="搜索音乐、MV、歌单、用户"/>
-                        <button className="music-search-btn">
-                            <Icon type="search"></Icon>
+                    {/* <div className="music-search"> */}
+                        {/* <input type="text" className="music-search-input" placeholder="搜索音乐、MV、歌单、用户"/> */}
+                        {/* <button className="music-search-btn"> */}
+                            {/* <Icon type="search"></Icon> */}
                             {/* <span className="music-search-icon-txt">搜索</span> */}
-                        </button>
-                    </div>
+                        {/* </button> */}
+                    {/* </div> */}
                     {
                         this.props.isLogin ?
                             <div className="login-module" onClick={this.toggleLogout.bind(this)}>

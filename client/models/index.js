@@ -13,7 +13,8 @@ export default {
         song: {},
         collect: [],
         username: '',
-        songList: []
+        songList: [],
+        collectList: []
     },
     reducers: {
         setState (state, action) {
@@ -21,7 +22,6 @@ export default {
         },
         getAllMusician: {
             success (state, action) {
-                console.log(action.payload)
                 return {
                     ...state,
                     ...action.payload,
@@ -34,7 +34,6 @@ export default {
         },
         getMusicianByName: {
             success (state, action) {
-                console.log('action', action);
                 return {
                     ...state,
                     musician: {
@@ -51,6 +50,23 @@ export default {
                 return {
                     ...state,
                     songList: [...new Set([...action.payload.songList])]
+                }
+            }
+        },
+        getCollectMusic: {
+            success(state, action) {
+                return {
+                    ...state,
+                    songList: [...new Set([...action.payload.songList])],
+                    collectList: [...new Set([...action.payload.collectList])]
+                }
+            }
+        },
+        buyvip: {
+            success(state, action) {
+                return {
+                    ...state,
+                    isVip: action.payload.isVip
                 }
             }
         }
@@ -81,14 +97,30 @@ export default {
             return res.json();
         },
         collectMusic: (music) => async ({getState}) => {
-            console.log(getState().index, music);
             const res = await fetch(`/collectMusic?key=${music}&username=${getState().index.username}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 }
             });
-            console.log(res)
+            return res.json();
+        },
+        getCollectMusic: (isCollect = 1) => async ({getState}) => {
+            const res = await fetch(`/getCollectMusic?username=${getState().index.username}&isCollect=${isCollect}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                }
+            });
+            return res.json();
+        },
+        buyvip: () => async ({getState}) => {
+            const res = await fetch(`/buyvip?username=${getState().index.username}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                }
+            });
             return res.json();
         }
     } 

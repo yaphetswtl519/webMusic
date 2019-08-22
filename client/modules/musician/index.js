@@ -9,7 +9,8 @@ import './index.scss';
     musician: state.index.musician,
     song: state.index.song,
     isLogin: state.index.isLogin,
-    isShowLoginModule: state.index.isShowLoginModule
+    isShowLoginModule: state.index.isShowLoginModule,
+    songList: state.index.songList
 }))
 export default class Musician extends React.Component {
     constructor() {
@@ -21,7 +22,7 @@ export default class Musician extends React.Component {
     componentDidMount() {
         const name = this.props.match.params.name;
         call('index.getMusicianByName', name);
-        console.log(this.props.isShowLoginModule)
+        call('index.getCollectMusic');
     }
     showDetail() {
         this.setState({
@@ -58,7 +59,6 @@ export default class Musician extends React.Component {
     }
     render() {
         const { musician, isShowLoginModule } = this.props;
-        console.log(this.props.isShowLoginModule)
         return (
             <div className="musician-container">
                 <MusicHeader history={this.props.history}></MusicHeader>
@@ -185,7 +185,7 @@ export default class Musician extends React.Component {
                 }
                 <MusicFooter></MusicFooter>
                 {
-                    this.props.song && this.props.song.name ? <MusicBar></MusicBar> : ''
+                    this.props.song && this.props.song.name ? <MusicBar songList={this.props.songList}></MusicBar> : ''
                 }
             </div>
         )
