@@ -35,7 +35,7 @@ export default class Musician extends React.Component {
             type: 'index.setState',
             payload: {
                 song: {
-                    src: 'http://pv1ykrmt7.bkt.clouddn.com/' + encodeURIComponent(musician.songs[0].name) + '.mp3',
+                    src: 'http://pwuovqgwc.bkt.clouddn.com/' + encodeURIComponent(musician.songs[0].name) + '.mp3',
                     songName: musician.songs[0].name,
                     name: musician.name,
                     img: musician.img.includes('http') ? musician.img : `http://${musician.img}`
@@ -49,7 +49,7 @@ export default class Musician extends React.Component {
             type: 'index.setState',
             payload: {
                 song: {
-                    src: 'http://pv1ykrmt7.bkt.clouddn.com/' + encodeURIComponent(data.songname) + '.mp3',
+                    src: 'http://pwuovqgwc.bkt.clouddn.com/' + encodeURIComponent(data.songname) + '.mp3',
                     songName: data.songname,
                     name: data.name,
                     img: data.img.includes('http') ? data.img : `http://${data.img}`

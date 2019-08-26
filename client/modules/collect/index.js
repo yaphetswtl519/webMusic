@@ -40,7 +40,7 @@ export default class Collect extends React.Component {
             type: 'index.setState',
             payload: {
                 song: {
-                    src: 'http://pv1ykrmt7.bkt.clouddn.com/' + encodeURIComponent(name) + '.mp3',
+                    src: 'http://pwuovqgwc.bkt.clouddn.com/' + encodeURIComponent(name) + '.mp3',
                     songName: name,
                     name: musician,
                     img: img.includes('http') ? img : `http://${img}`
